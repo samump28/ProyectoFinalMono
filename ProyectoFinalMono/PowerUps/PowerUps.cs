@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoFinalMono.Sistemas
+namespace ProyectoFinalMono.PowerUps
 {
-    internal class GestorNiveles
+    internal class PowerUps
     {
     }
 }

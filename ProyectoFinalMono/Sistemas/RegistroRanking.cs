@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoFinalMono.Sistemas
 {
-    internal class GestorNiveles
+    internal class RegistroRanking
     {
     }
 }
