@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ProyectoFinalMono.Entidadess;
+using ProyectoFinalMono.Sistemas;
 
 namespace ProyectoFinalMono
 {
@@ -12,6 +13,13 @@ namespace ProyectoFinalMono
 
         private Texture2D texturaEnemigo;
         private Enemigo enemigo;
+        private Texture2D texturaJugador;
+        private Texture2D texturaPared;
+
+        private Jugador jugador;
+        private Mapa mapa;
+
+        private int puntuacion = 0;
 
         public Game1()
         {
@@ -22,7 +30,7 @@ namespace ProyectoFinalMono
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            mapa = new Mapa();
 
             base.Initialize();
         }
@@ -36,12 +44,20 @@ namespace ProyectoFinalMono
                 texturaEnemigo, 
                 vector2);
 
-            // TODO: use this.Content to load your game content here
+            texturaJugador = new Texture2D(GraphicsDevice, 1, 1);
+            texturaJugador.SetData(new[] { Color.Yellow });
+
+            texturaPared = new Texture2D(GraphicsDevice, 1, 1);
+            texturaPared.SetData(new[] { Color.Blue });
+
+            jugador = new Jugador(texturaJugador, new Vector2(50, 50));
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            KeyboardState teclado = Keyboard.GetState();
+
+            if (teclado.IsKeyDown(Keys.Escape))
                 Exit();
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -49,13 +65,28 @@ namespace ProyectoFinalMono
 
             enemigo.Update(gameTime);
             // TODO: Add your update logic here
+            Vector2 posicionAnterior = jugador.posicion;
+
+            jugador.Update();
+
+            if (Colisiones.DetectarPared(mapa, jugador.Rectangulo()))
+                jugador.posicion = posicionAnterior;
+
+            if (mapa.RecogerPunto(jugador.Rectangulo()))
+                puntuacion += 10;
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
+
+            _spriteBatch.Begin();
+
+            mapa.Dibujar(_spriteBatch, texturaPared);
+
+            jugador.Draw(_spriteBatch);
 
             _spriteBatch.Begin();
 
@@ -63,6 +94,7 @@ namespace ProyectoFinalMono
 
             _spriteBatch.End();
             // TODO: Add your drawing code here
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
