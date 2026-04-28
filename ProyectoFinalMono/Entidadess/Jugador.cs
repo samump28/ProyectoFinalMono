@@ -22,7 +22,7 @@ namespace ProyectoFinalMono.Entidadess
         }
 
         public void Update()
-        { 
+        {
             KeyboardState teclado = Keyboard.GetState();
 
             if (teclado.IsKeyDown(Keys.W))
