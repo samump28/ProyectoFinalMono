@@ -1,0 +1,216 @@
+[1mdiff --git a/ProyectoFinalMono/Entidadess/Enemigo.cs b/ProyectoFinalMono/Entidadess/Enemigo.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 42336d2..0000000[m
+[1m--- a/ProyectoFinalMono/Entidadess/Enemigo.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-[m
+[31m-namespace ProyectoFinalMono.Entidadess[m
+[31m-{[m
+[31m-    internal class Enemigo[m
+[31m-    {[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/ProyectoFinalMono/Entidadess/Jugador.cs b/ProyectoFinalMono/Entidadess/Jugador.cs[m
+[1mdeleted file mode 100644[m
+[1mindex bcb776b..0000000[m
+[1m--- a/ProyectoFinalMono/Entidadess/Jugador.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-[m
+[31m-namespace ProyectoFinalMono.Entidadess[m
+[31m-{[m
+[31m-    internal class Jugador[m
+[31m-    {[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/ProyectoFinalMono/PowerUps/GestorPowerUps.cs b/ProyectoFinalMono/PowerUps/GestorPowerUps.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 68a92f0..0000000[m
+[1m--- a/ProyectoFinalMono/PowerUps/GestorPowerUps.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-[m
+[31m-namespace ProyectoFinalMono.PowerUps[m
+[31m-{[m
+[31m-    internal class GestorPowerUps[m
+[31m-    {[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/ProyectoFinalMono/PowerUps/PowerUps.cs b/ProyectoFinalMono/PowerUps/PowerUps.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 859c8d7..0000000[m
+[1m--- a/ProyectoFinalMono/PowerUps/PowerUps.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-[m
+[31m-namespace ProyectoFinalMono.PowerUps[m
+[31m-{[m
+[31m-    internal class PowerUps[m
+[31m-    {[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/ProyectoFinalMono/Sistemas/Colisiones.cs b/ProyectoFinalMono/Sistemas/Colisiones.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 19c2660..0000000[m
+[1m--- a/ProyectoFinalMono/Sistemas/Colisiones.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-[m
+[31m-namespace ProyectoFinalMono.Sistemas[m
+[31m-{[m
+[31m-    internal class Colisiones[m
+[31m-    {[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/ProyectoFinalMono/Sistemas/GestorNiveles.cs b/ProyectoFinalMono/Sistemas/GestorNiveles.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 01825a2..0000000[m
+[1m--- a/ProyectoFinalMono/Sistemas/GestorNiveles.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-[m
+[31m-namespace ProyectoFinalMono.Sistemas[m
+[31m-{[m
+[31m-    internal class GestorNiveles[m
+[31m-    {[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/ProyectoFinalMono/Sistemas/Mapa.cs b/ProyectoFinalMono/Sistemas/Mapa.cs[m
+[1mdeleted file mode 100644[m
+[1mindex bd1a0d5..0000000[m
+[1m--- a/ProyectoFinalMono/Sistemas/Mapa.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-[m
+[31m-namespace ProyectoFinalMono.Sistemas[m
+[31m-{[m
+[31m-    internal class Mapa[m
+[31m-    {[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/ProyectoFinalMono/Sistemas/RegistroRanking.cs b/ProyectoFinalMono/Sistemas/RegistroRanking.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 9253aa0..0000000[m
+[1m--- a/ProyectoFinalMono/Sistemas/RegistroRanking.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-[m
+[31m-namespace ProyectoFinalMono.Sistemas[m
+[31m-{[m
+[31m-    internal class RegistroRanking[m
+[31m-    {[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/ProyectoFinalMono/UI/MenuPrincipal.cs b/ProyectoFinalMono/UI/MenuPrincipal.cs[m
+[1mdeleted file mode 100644[m
+[1mindex f4037fd..0000000[m
+[1m--- a/ProyectoFinalMono/UI/MenuPrincipal.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-[m
+[31m-namespace ProyectoFinalMono.UI[m
+[31m-{[m
+[31m-    internal class MenuPrincipal[m
+[31m-    {[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/ProyectoFinalMono/UI/PantallaGameOver.cs b/ProyectoFinalMono/UI/PantallaGameOver.cs[m
+[1mdeleted file mode 100644[m
+[1mindex db9993b..0000000[m
+[1m--- a/ProyectoFinalMono/UI/PantallaGameOver.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-[m
+[31m-namespace ProyectoFinalMono.UI[m
+[31m-{[m
+[31m-    internal class PantallaGameOver[m
+[31m-    {[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/ProyectoFinalMono/UI/PantallaJuego.cs b/ProyectoFinalMono/UI/PantallaJuego.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 2364ff6..0000000[m
+[1m--- a/ProyectoFinalMono/UI/PantallaJuego.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-[m
+[31m-namespace ProyectoFinalMono.UI[m
+[31m-{[m
+[31m-    internal class PantallaJuego[m
+[31m-    {[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/ProyectoFinalMono/UI/PantallaRanking.cs b/ProyectoFinalMono/UI/PantallaRanking.cs[m
+[1mdeleted file mode 100644[m
+[1mindex d56a9d3..0000000[m
+[1m--- a/ProyectoFinalMono/UI/PantallaRanking.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-[m
+[31m-namespace ProyectoFinalMono.UI[m
+[31m-{[m
+[31m-    internal class PantallaRanking[m
+[31m-    {[m
+[31m-    }[m
+[31m-}[m
