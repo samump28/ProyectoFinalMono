@@ -1,6 +1,6 @@
 ﻿using System;
 
-public abstract class PowerUp
+public abstract class PowerUps
 {
 
     public string Tipo { get; protected set; }
@@ -9,7 +9,7 @@ public abstract class PowerUp
     private float tiempoRestante;
     private bool activo;
 
-    public PowerUp(string tipo, float duracion)
+    public PowerUps(string tipo, float duracion)
     {
         Tipo = tipo;
         Duracion = duracion;
