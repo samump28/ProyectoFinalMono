@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoFinalMono.Entidadess
 {
-    internal class Jugador
+    public class Jugador
     {
         public Texture2D textura;
         public Vector2 posicion;
