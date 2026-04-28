@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ProyectoFinalMono.Entidadess;
 
 namespace ProyectoFinalMono
 {
@@ -8,6 +9,9 @@ namespace ProyectoFinalMono
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        private Texture2D texturaEnemigo;
+        private Enemigo enemigo;
 
         public Game1()
         {
@@ -26,6 +30,11 @@ namespace ProyectoFinalMono
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            texturaEnemigo = Content.Load<Texture2D>("enemigo");
+            Vector2 vector2 = new(300, 200);
+            enemigo = new Enemigo(
+                texturaEnemigo, 
+                vector2);
 
             // TODO: use this.Content to load your game content here
         }
@@ -35,6 +44,10 @@ namespace ProyectoFinalMono
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+
+            enemigo.Update(gameTime);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -44,6 +57,11 @@ namespace ProyectoFinalMono
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            _spriteBatch.Begin();
+
+            enemigo.Draw(_spriteBatch);
+
+            _spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
