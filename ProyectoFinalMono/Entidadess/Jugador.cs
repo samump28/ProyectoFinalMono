@@ -12,14 +12,29 @@ namespace ProyectoFinalMono.Entidadess
     public class Jugador
     {
         public Texture2D textura;
+        private Texture2D texturaOriginal;
+        private Texture2D texturaPowerUp;
+
         public Vector2 posicion;
         public float velocidad = 3f;
 
         public Jugador(Texture2D tex, Vector2 pos)
         {
             textura = tex;
+            texturaOriginal = tex;
             posicion = pos;
         }
+        public void CambiarSprite(Texture2D nuevaTextura)
+        {
+            texturaPowerUp = nuevaTextura;
+            textura = nuevaTextura;
+        }
+
+        public void RestaurarSprite()
+        {
+            textura = texturaOriginal;
+        }
+
 
         public void Update()
         {
