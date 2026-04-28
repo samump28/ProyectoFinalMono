@@ -31,7 +31,7 @@ namespace ProyectoFinalMono.Entidadess
         private Random random = new Random();
 
         // Constructor correcto
-        public Enemigo(Texture2D textura, System.Numerics.Vector2 posicionInicial)
+        public Enemigo(Texture2D textura, Microsoft.Xna.Framework.Vector2 posicionInicial)
         {
             this.textura = textura;
             this.posicion = posicionInicial;

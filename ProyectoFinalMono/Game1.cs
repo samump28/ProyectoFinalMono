@@ -11,6 +11,8 @@ namespace ProyectoFinalMono
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private Texture2D texturaEnemigo;
+        private Enemigo enemigo;
         private Texture2D texturaJugador;
         private Texture2D texturaPared;
 
@@ -36,6 +38,11 @@ namespace ProyectoFinalMono
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            texturaEnemigo = Content.Load<Texture2D>("enemigo");
+            Vector2 vector2 = new(300, 200);
+            enemigo = new Enemigo(
+                texturaEnemigo, 
+                vector2);
 
             texturaJugador = new Texture2D(GraphicsDevice, 1, 1);
             texturaJugador.SetData(new[] { Color.Yellow });
@@ -53,6 +60,11 @@ namespace ProyectoFinalMono
             if (teclado.IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+
+            enemigo.Update(gameTime);
+            // TODO: Add your update logic here
             Vector2 posicionAnterior = jugador.posicion;
 
             jugador.Update();
@@ -76,6 +88,12 @@ namespace ProyectoFinalMono
 
             jugador.Draw(_spriteBatch);
 
+            _spriteBatch.Begin();
+
+            enemigo.Draw(_spriteBatch);
+
+            _spriteBatch.End();
+            // TODO: Add your drawing code here
             _spriteBatch.End();
 
             base.Draw(gameTime);
