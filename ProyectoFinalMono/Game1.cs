@@ -1,25 +1,25 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using ProyectoFinalMono.Entidadess;
+using ProyectoFinalMono.UI;
 using ProyectoFinalMono.Sistemas;
 
 namespace ProyectoFinalMono
 {
     public class Game1 : Game
     {
+        private enum EstadoJuego
+        {
+            Menu,
+            Nombre,
+            Jugando,
+            Ranking,
+            GameOver
+        }
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
-        private Texture2D texturaEnemigo;
-        private Enemigo enemigo;
-        private Texture2D texturaJugador;
-        private Texture2D texturaPared;
-
-        private Jugador jugador;
-        private Mapa mapa;
-
-        private int puntuacion = 0;
+        private SpriteFont fuente;
 
         public Game1()
         {
@@ -30,7 +30,7 @@ namespace ProyectoFinalMono
 
         protected override void Initialize()
         {
-            mapa = new Mapa();
+            // TODO: Add your initialization logic here
 
             base.Initialize();
         }
@@ -44,38 +44,23 @@ namespace ProyectoFinalMono
                 texturaEnemigo, 
                 vector2);
 
-            texturaJugador = new Texture2D(GraphicsDevice, 1, 1);
-            texturaJugador.SetData(new[] { Color.Yellow });
-
-            texturaPared = new Texture2D(GraphicsDevice, 1, 1);
-            texturaPared.SetData(new[] { Color.Blue });
-
-            jugador = new Jugador(texturaJugador, new Vector2(50, 50));
+            // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
         {
-            KeyboardState teclado = Keyboard.GetState();
-
-            if (teclado.IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            }
+        }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+        private bool TeclaPulsada(Keys tecla)
+        {
+            bool pulsada = false;
 
-            enemigo.Update(gameTime);
             // TODO: Add your update logic here
-            Vector2 posicionAnterior = jugador.posicion;
 
-            jugador.Update();
-
-            if (Colisiones.DetectarPared(mapa, jugador.Rectangulo()))
-                jugador.posicion = posicionAnterior;
-
-            if (mapa.RecogerPunto(jugador.Rectangulo()))
-                puntuacion += 10;
-
-            base.Update(gameTime);
+            return pulsada;
         }
 
         protected override void Draw(GameTime gameTime)
@@ -92,11 +77,18 @@ namespace ProyectoFinalMono
 
             enemigo.Draw(_spriteBatch);
 
-            _spriteBatch.End();
             // TODO: Add your drawing code here
-            _spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private void DibujarJuego()
+        {
+            _spriteBatch.DrawString(fuente, "JUGANDO", new Vector2(300, 120), Color.White);
+            _spriteBatch.DrawString(fuente, "Jugador: " + nombreJugador, new Vector2(300, 180), Color.Yellow);
+            _spriteBatch.DrawString(fuente, "Puntuacion: " + puntuacion, new Vector2(300, 220), Color.Yellow);
+            _spriteBatch.DrawString(fuente, "Vidas: " + vidas, new Vector2(300, 260), Color.Yellow);
+            _spriteBatch.DrawString(fuente, "Pulsa G para probar Game Over", new Vector2(300, 320), Color.Gray);
         }
     }
 }
