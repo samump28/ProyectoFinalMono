@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ProyectoFinalMono.Entidadess;
 using ProyectoFinalMono.UI;
 using ProyectoFinalMono.Sistemas;
 
@@ -20,6 +21,13 @@ namespace ProyectoFinalMono
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private SpriteFont fuente;
+
+        private Texture2D texturaEnemigo;
+        private Texture2D texturaJugador;
+        private Texture2D texturaPared;
+        private Enemigo enemigo;
+        private Jugador jugador;
+        private Mapa mapa;
 
         private EstadoJuego estadoActual = EstadoJuego.Menu;
 
@@ -52,12 +60,16 @@ namespace ProyectoFinalMono
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             texturaEnemigo = Content.Load<Texture2D>("enemigo");
+            texturaJugador = Content.Load<Texture2D>("jugador");
+          //  texturaPared = Content.Load<Texture2D>("pared");
             Vector2 vector2 = new(300, 200);
             enemigo = new Enemigo(
                 texturaEnemigo, 
                 vector2);
+            jugador = new Jugador(texturaJugador, new Vector2(100, 100));
+            mapa = new Mapa();
 
-            fuente = Content.Load<SpriteFont>("Fuente");
+           // fuente = Content.Load<SpriteFont>("Fuente");
 
             menuPrincipal = new MenuPrincipal();
             pantallaNombre = new PantallaNombre();
@@ -179,10 +191,12 @@ namespace ProyectoFinalMono
             if (TeclaPulsada(Keys.Escape))
             {
                 Exit();
+            }
+        }
 
-            // TODO: Add your update logic here
-
-            return pulsada;
+        private bool TeclaPulsada(Keys tecla)
+        {
+            return tecladoActual.IsKeyDown(tecla) && tecladoAnterior.IsKeyUp(tecla);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -195,11 +209,7 @@ namespace ProyectoFinalMono
 
             jugador.Draw(_spriteBatch);
 
-            _spriteBatch.Begin();
-
             enemigo.Draw(_spriteBatch);
-
-            _spriteBatch.Begin();
 
             if (estadoActual == EstadoJuego.Menu)
             {

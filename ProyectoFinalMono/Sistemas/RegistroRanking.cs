@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace ProyectoFinalMono.Sistemas
 {
-    internal class RegistroRanking
+    public class RegistroRanking
     {
         private string rutaArchivo = "ranking.json";
 
@@ -36,10 +32,13 @@ namespace ProyectoFinalMono.Sistemas
 
         public void Guardar(List<EntradaRanking> ranking)
         {
-            string json = JsonSerializer.Serialize(ranking, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
+            string json = JsonSerializer.Serialize(
+                ranking,
+                new JsonSerializerOptions
+                {
+                    WriteIndented = true
+                }
+            );
 
             File.WriteAllText(rutaArchivo, json);
         }
@@ -48,7 +47,9 @@ namespace ProyectoFinalMono.Sistemas
         {
             List<EntradaRanking> ranking = Cargar();
 
-            ranking.Add(new EntradaRanking(nombre, puntuacion));
+            EntradaRanking entrada = new EntradaRanking(nombre, puntuacion);
+
+            ranking.Add(entrada);
 
             ranking.Sort((a, b) => b.Puntuacion.CompareTo(a.Puntuacion));
 
@@ -59,6 +60,5 @@ namespace ProyectoFinalMono.Sistemas
 
             Guardar(ranking);
         }
-
     }
 }

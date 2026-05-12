@@ -18,17 +18,25 @@ namespace ProyectoFinalMono.UI
 
             for (int i = 0; i < ranking.Count; i++)
             {
-                string linea = (i + 1) + ". " + ranking[i].Nombre + " - " + ranking[i].Puntuacion + " puntos - " + ranking[i].Fecha.ToShortDateString();
+                string linea =
+                    (i + 1) + ". " +
+                    ranking[i].Nombre +
+                    " - " +
+                    ranking[i].Puntuacion +
+                    " puntos - " +
+                    ranking[i].Fecha.ToShortDateString();
+
                 spriteBatch.DrawString(fuente, linea, new Vector2(180, y), Color.Yellow);
+
                 y += 35;
             }
 
             if (ranking.Count == 0)
             {
-                spriteBatch.DrawString(fuente, "No hay puntuaciones guardadas", new Vector2(220, 160), Color.Yellow);
+                spriteBatch.DrawString(fuente, "NO HAY PUNTUACIONES", new Vector2(220, 160), Color.Yellow);
             }
 
-            spriteBatch.DrawString(fuente, "ESC - Volver", new Vector2(260, 500), Color.Gray);
+            spriteBatch.DrawString(fuente, "ESC - VOLVER", new Vector2(260, 500), Color.Gray);
         }
     }
 }
