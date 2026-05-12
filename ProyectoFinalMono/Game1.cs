@@ -21,6 +21,21 @@ namespace ProyectoFinalMono
         private SpriteBatch _spriteBatch;
         private SpriteFont fuente;
 
+        private EstadoJuego estadoActual = EstadoJuego.Menu;
+
+        private MenuPrincipal menuPrincipal;
+        private PantallaNombre pantallaNombre;
+        private PantallaRanking pantallaRanking;
+        private PantallaGameOver pantallaGameOver;
+
+        private string nombreJugador = "";
+        private int puntuacion = 0;
+        private int vidas = 3;
+        private bool puntuacionGuardada = false;
+
+        private KeyboardState tecladoActual;
+        private KeyboardState tecladoAnterior;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -30,8 +45,6 @@ namespace ProyectoFinalMono
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -44,19 +57,128 @@ namespace ProyectoFinalMono
                 texturaEnemigo, 
                 vector2);
 
-            // TODO: use this.Content to load your game content here
+            fuente = Content.Load<SpriteFont>("Fuente");
+
+            menuPrincipal = new MenuPrincipal();
+            pantallaNombre = new PantallaNombre();
+            pantallaRanking = new PantallaRanking();
+            pantallaGameOver = new PantallaGameOver();
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            tecladoActual = Keyboard.GetState();
+
+            if (estadoActual == EstadoJuego.Menu)
+            {
+                ActualizarMenu();
+            }
+            else if (estadoActual == EstadoJuego.Nombre)
+            {
+                ActualizarNombre();
+            }
+            else if (estadoActual == EstadoJuego.Jugando)
+            {
+                ActualizarJuego(gameTime);
+            }
+            else if (estadoActual == EstadoJuego.Ranking)
+            {
+                ActualizarRanking();
+            }
+            else if (estadoActual == EstadoJuego.GameOver)
+            {
+                ActualizarGameOver();
+            }
+
+            tecladoAnterior = tecladoActual;
+
+            base.Update(gameTime);
+        }
+
+        private void ActualizarMenu()
+        {
+            menuPrincipal.Update();
+
+            if (TeclaPulsada(Keys.Enter))
+            {
+                estadoActual = EstadoJuego.Nombre;
+            }
+
+            if (TeclaPulsada(Keys.R))
+            {
+                estadoActual = EstadoJuego.Ranking;
+            }
+
+            if (TeclaPulsada(Keys.Escape))
+            {
                 Exit();
             }
         }
 
-        private bool TeclaPulsada(Keys tecla)
+        private void ActualizarNombre()
         {
-            bool pulsada = false;
+            pantallaNombre.Update();
+
+            if (pantallaNombre.EnterPulsado())
+            {
+                nombreJugador = pantallaNombre.Nombre;
+                puntuacion = 0;
+                vidas = 3;
+                puntuacionGuardada = false;
+                estadoActual = EstadoJuego.Jugando;
+            }
+
+            if (TeclaPulsada(Keys.Escape))
+            {
+                estadoActual = EstadoJuego.Menu;
+            }
+        }
+
+        private void ActualizarJuego(GameTime gameTime)
+        {
+            // AQUÍ VA LA LÓGICA REAL DEL JUEGO:
+            // jugador.Update();
+            // mapa.Update();
+            // enemigos.Update();
+            // colisiones.Update();
+
+            // EJEMPLO TEMPORAL PARA PROBAR GAME OVER:
+            if (TeclaPulsada(Keys.G))
+            {
+                vidas = 0;
+            }
+
+            if (vidas <= 0)
+            {
+                estadoActual = EstadoJuego.GameOver;
+            }
+        }
+
+        private void ActualizarRanking()
+        {
+            if (TeclaPulsada(Keys.Escape))
+            {
+                estadoActual = EstadoJuego.Menu;
+            }
+        }
+
+        private void ActualizarGameOver()
+        {
+            if (!puntuacionGuardada)
+            {
+                RegistroRanking registroRanking = new RegistroRanking();
+                registroRanking.Añadir(nombreJugador, puntuacion);
+                puntuacionGuardada = true;
+            }
+
+            if (TeclaPulsada(Keys.Enter))
+            {
+                estadoActual = EstadoJuego.Menu;
+            }
+
+            if (TeclaPulsada(Keys.Escape))
+            {
+                Exit();
 
             // TODO: Add your update logic here
 
@@ -77,7 +199,30 @@ namespace ProyectoFinalMono
 
             enemigo.Draw(_spriteBatch);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+
+            if (estadoActual == EstadoJuego.Menu)
+            {
+                menuPrincipal.Draw(_spriteBatch, fuente);
+            }
+            else if (estadoActual == EstadoJuego.Nombre)
+            {
+                pantallaNombre.Draw(_spriteBatch, fuente);
+            }
+            else if (estadoActual == EstadoJuego.Jugando)
+            {
+                DibujarJuego();
+            }
+            else if (estadoActual == EstadoJuego.Ranking)
+            {
+                pantallaRanking.Draw(_spriteBatch, fuente);
+            }
+            else if (estadoActual == EstadoJuego.GameOver)
+            {
+                pantallaGameOver.Draw(_spriteBatch, fuente, puntuacion);
+            }
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
