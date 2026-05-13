@@ -13,7 +13,7 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace ProyectoFinalMono.Entidadess
 {
-    internal class Enemigo
+    public class Enemigo
     {
         // Posición del enemigo
         public Microsoft.Xna.Framework.Vector2 posicion;
