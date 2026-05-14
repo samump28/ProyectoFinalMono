@@ -37,6 +37,13 @@
 /processorParam:TextureFormat=Color
 /build:fuente.png
 
+#begin fuente.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:fuente.spritefont
+
 #begin jugador.png
 /importer:TextureImporter
 /processor:TextureProcessor
