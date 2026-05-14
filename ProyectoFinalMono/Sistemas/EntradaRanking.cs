@@ -8,14 +8,9 @@ namespace ProyectoFinalMono.Sistemas
 {
     public class EntradaRanking
     {
-        public string Nombre { get; set; } = string.Empty;
+        public string Nombre { get; set; }
         public int Puntuacion { get; set; }
         public DateTime Fecha { get; set; }
-
-        public EntradaRanking()
-        {
-        }
-
         public EntradaRanking(string nombre, int puntuacion)
         {
             Nombre = nombre;

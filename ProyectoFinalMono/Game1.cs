@@ -61,7 +61,7 @@ namespace ProyectoFinalMono
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             texturaEnemigo = Content.Load<Texture2D>("enemigo");
             texturaJugador = Content.Load<Texture2D>("jugador");
-          //  texturaPared = Content.Load<Texture2D>("pared");
+           texturaPared = Content.Load<Texture2D>("pared");
             Vector2 vector2 = new(300, 200);
             enemigo = new Enemigo(
                 texturaEnemigo, 
@@ -69,7 +69,7 @@ namespace ProyectoFinalMono
             jugador = new Jugador(texturaJugador, new Vector2(100, 100));
             mapa = new Mapa();
 
-           // fuente = Content.Load<SpriteFont>("Fuente");
+           fuente = Content.Load<SpriteFont>("fuente");
 
             menuPrincipal = new MenuPrincipal();
             pantallaNombre = new PantallaNombre();
