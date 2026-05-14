@@ -1,6 +1,6 @@
 ﻿using ProyectoFinalMono.Entidadess;
 
-public abstract class PowerUps
+public abstract class PowerUp
 {
 
     public string Tipo { get; protected set; }
@@ -9,7 +9,7 @@ public abstract class PowerUps
     private float tiempoRestante;
     private bool activo;
 
-    public PowerUps(string tipo, float duracion)
+    public PowerUp(string tipo, float duracion)
     {
         Tipo = tipo;
         Duracion = duracion;
