@@ -77,7 +77,11 @@ namespace ProyectoFinalMono.Entidadess
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(textura, posicion, Color.White);
+            spriteBatch.Draw(
+                textura,
+                new Rectangle((int)posicion.X, (int)posicion.Y, 40, 40),
+                Color.White
+            );
         }
 
         // Colisiones
@@ -86,8 +90,8 @@ namespace ProyectoFinalMono.Entidadess
             return new Rectangle(
                 (int)posicion.X,
                 (int)posicion.Y,
-                textura.Width,
-                textura.Height
+                40,
+                40
             );
         }
     }
