@@ -63,13 +63,13 @@ namespace ProyectoFinalMono
             texturaJugador = Content.Load<Texture2D>("jugador");
            texturaPared = Content.Load<Texture2D>("pared");
             Vector2 vector2 = new(300, 200);
-            enemigo = new Enemigo(
+            enemigo = new Enemigo(  
                 texturaEnemigo, 
                 vector2);
             jugador = new Jugador(texturaJugador, new Vector2(100, 100));
             mapa = new Mapa();
 
-           fuente = Content.Load<SpriteFont>("fuente");
+            fuente = Content.Load<SpriteFont>("fuente");
 
             menuPrincipal = new MenuPrincipal();
             pantallaNombre = new PantallaNombre();

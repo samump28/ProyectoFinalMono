@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SpriteFont xmlns="http://www.microsoft.com/2006/xna/content/graphics">
+  <FontName>04B_30_</FontName>
+  <Size>32</Size>
+  <Spacing>0</Spacing>
+  <UseKerning>false</UseKerning>
+  <Style>Regular</Style>
+  <CharacterRegions>
+    <CharacterRegion>
+      <Start> </Start>
+      <End>~</End>
+    </CharacterRegion>
+  </CharacterRegions>
+</SpriteFont>
