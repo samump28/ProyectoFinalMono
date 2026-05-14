@@ -1,66 +1,74 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProyectoFinalMono.Entidadess
 {
     public class Jugador
     {
-        public Texture2D textura;
-        private Texture2D texturaOriginal;
-        private Texture2D texturaPowerUp;
+        private Texture2D textura;
+        private Vector2 posicion;
+        private int tamaño = 40;
+        private float velocidad = 4f;
 
-        public Vector2 posicion;
-        public float velocidad = 3f;
-
-        public Jugador(Texture2D tex, Vector2 pos)
+        public Jugador(Texture2D textura, Vector2 posicionInicial)
         {
-            textura = tex;
-            texturaOriginal = tex;
-            posicion = pos;
+            this.textura = textura;
+            posicion = posicionInicial;
         }
-        public void CambiarSprite(Texture2D nuevaTextura)
-        {
-            texturaPowerUp = nuevaTextura;
-            textura = nuevaTextura;
-        }
-
-        public void RestaurarSprite()
-        {
-            textura = texturaOriginal;
-        }
-
 
         public void Update()
         {
             KeyboardState teclado = Keyboard.GetState();
 
-            if (teclado.IsKeyDown(Keys.W))
+            if (teclado.IsKeyDown(Keys.W) || teclado.IsKeyDown(Keys.Up))
+            {
                 posicion.Y -= velocidad;
+            }
 
-            if (teclado.IsKeyDown(Keys.S))
+            if (teclado.IsKeyDown(Keys.S) || teclado.IsKeyDown(Keys.Down))
+            {
                 posicion.Y += velocidad;
+            }
 
-            if (teclado.IsKeyDown(Keys.A))
+            if (teclado.IsKeyDown(Keys.A) || teclado.IsKeyDown(Keys.Left))
+            {
                 posicion.X -= velocidad;
+            }
 
-            if (teclado.IsKeyDown(Keys.D))
+            if (teclado.IsKeyDown(Keys.D) || teclado.IsKeyDown(Keys.Right))
+            {
                 posicion.X += velocidad;
+            }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void CambiarPosicion(Vector2 nuevaPosicion)
         {
-            spriteBatch.Draw(textura, posicion, Color.White);
+            posicion = nuevaPosicion;
+        }
+
+        public Vector2 ObtenerPosicion()
+        {
+            return posicion;
         }
 
         public Rectangle Rectangulo()
         {
-            return new Rectangle((int)posicion.X, (int)posicion.Y, 32, 32);
+            return new Rectangle(
+                (int)posicion.X,
+                (int)posicion.Y,
+                tamaño,
+                tamaño
+            );
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(
+                textura,
+                Rectangulo(),
+                Color.White
+            );
         }
     }
 }

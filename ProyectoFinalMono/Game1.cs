@@ -50,13 +50,15 @@ namespace ProyectoFinalMono
         {
             _graphics = new GraphicsDeviceManager(this);
 
-            _graphics.PreferredBackBufferWidth = 800;
-            _graphics.PreferredBackBufferHeight = 600;
+            _graphics.PreferredBackBufferWidth = 1920;
+            _graphics.PreferredBackBufferHeight = 1080;
+
+            _graphics.IsFullScreen = true;
+
             _graphics.ApplyChanges();
 
-            Window.Title = "Proyecto Final MonoGame";
-
             Content.RootDirectory = "Content";
+
             IsMouseVisible = true;
         }
 
@@ -174,6 +176,28 @@ namespace ProyectoFinalMono
 
         private void ActualizarJuego(GameTime gameTime)
         {
+            Vector2 posicionAnterior = jugador.ObtenerPosicion();
+
+            jugador.Update();
+
+            if (mapa.HayColision(jugador.Rectangulo()))
+            {
+                jugador.CambiarPosicion(posicionAnterior);
+            }
+
+            if (mapa.RecogerPunto(jugador.Rectangulo()))
+            {
+                puntuacion += 10;
+            }
+
+            enemigo.Update(gameTime);
+
+            if (jugador.Rectangulo().Intersects(enemigo.GetBounds()))
+            {
+                vidas--;
+                jugador.CambiarPosicion(new Vector2(40, 40));
+            }
+
             if (TeclaPulsada(Keys.G))
             {
                 vidas = 0;
