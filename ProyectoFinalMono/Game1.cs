@@ -9,6 +9,7 @@ namespace ProyectoFinalMono
 {
     public class Game1 : Game
     {
+
         private enum EstadoJuego
         {
             Menu,
@@ -25,6 +26,7 @@ namespace ProyectoFinalMono
         private Texture2D texturaEnemigo;
         private Texture2D texturaJugador;
         private Texture2D texturaPared;
+
         private Enemigo enemigo;
         private Jugador jugador;
         private Mapa mapa;
@@ -47,33 +49,53 @@ namespace ProyectoFinalMono
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+
+            _graphics.PreferredBackBufferWidth = 800;
+            _graphics.PreferredBackBufferHeight = 600;
+            _graphics.ApplyChanges();
+
+            Window.Title = "Proyecto Final MonoGame";
+
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
+            tecladoActual = Keyboard.GetState();
+            tecladoAnterior = tecladoActual;
+
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
             texturaEnemigo = Content.Load<Texture2D>("enemigo");
             texturaJugador = Content.Load<Texture2D>("jugador");
-           texturaPared = Content.Load<Texture2D>("pared");
-            Vector2 vector2 = new(300, 200);
-            enemigo = new Enemigo(  
-                texturaEnemigo, 
-                vector2);
-            jugador = new Jugador(texturaJugador, new Vector2(100, 100));
-            mapa = new Mapa();
+            texturaPared = Content.Load<Texture2D>("pared");
 
             fuente = Content.Load<SpriteFont>("fuente");
 
+            enemigo = new Enemigo(
+                texturaEnemigo,
+                new Vector2(300, 200)
+            );
+
+            jugador = new Jugador(
+                texturaJugador,
+                new Vector2(100, 100)
+            );
+
+            mapa = new Mapa();
+
             menuPrincipal = new MenuPrincipal();
+
             pantallaNombre = new PantallaNombre();
+
             pantallaRanking = new PantallaRanking();
+
             pantallaGameOver = new PantallaGameOver();
         }
 
@@ -134,9 +156,13 @@ namespace ProyectoFinalMono
             if (pantallaNombre.EnterPulsado())
             {
                 nombreJugador = pantallaNombre.Nombre;
+
                 puntuacion = 0;
+
                 vidas = 3;
+
                 puntuacionGuardada = false;
+
                 estadoActual = EstadoJuego.Jugando;
             }
 
@@ -148,13 +174,6 @@ namespace ProyectoFinalMono
 
         private void ActualizarJuego(GameTime gameTime)
         {
-            // AQUÍ VA LA LÓGICA REAL DEL JUEGO:
-            // jugador.Update();
-            // mapa.Update();
-            // enemigos.Update();
-            // colisiones.Update();
-
-            // EJEMPLO TEMPORAL PARA PROBAR GAME OVER:
             if (TeclaPulsada(Keys.G))
             {
                 vidas = 0;
@@ -179,7 +198,9 @@ namespace ProyectoFinalMono
             if (!puntuacionGuardada)
             {
                 RegistroRanking registroRanking = new RegistroRanking();
+
                 registroRanking.Añadir(nombreJugador, puntuacion);
+
                 puntuacionGuardada = true;
             }
 
@@ -196,7 +217,8 @@ namespace ProyectoFinalMono
 
         private bool TeclaPulsada(Keys tecla)
         {
-            return tecladoActual.IsKeyDown(tecla) && tecladoAnterior.IsKeyUp(tecla);
+            return tecladoActual.IsKeyDown(tecla)
+                && tecladoAnterior.IsKeyUp(tecla);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -204,12 +226,6 @@ namespace ProyectoFinalMono
             GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin();
-
-            mapa.Dibujar(_spriteBatch, texturaPared);
-
-            jugador.Draw(_spriteBatch);
-
-            enemigo.Draw(_spriteBatch);
 
             if (estadoActual == EstadoJuego.Menu)
             {
@@ -221,6 +237,12 @@ namespace ProyectoFinalMono
             }
             else if (estadoActual == EstadoJuego.Jugando)
             {
+                mapa.Dibujar(_spriteBatch, texturaPared);
+
+                jugador.Draw(_spriteBatch);
+
+                enemigo.Draw(_spriteBatch);
+
                 DibujarJuego();
             }
             else if (estadoActual == EstadoJuego.Ranking)
@@ -239,11 +261,40 @@ namespace ProyectoFinalMono
 
         private void DibujarJuego()
         {
-            _spriteBatch.DrawString(fuente, "JUGANDO", new Vector2(300, 120), Color.White);
-            _spriteBatch.DrawString(fuente, "Jugador: " + nombreJugador, new Vector2(300, 180), Color.Yellow);
-            _spriteBatch.DrawString(fuente, "Puntuacion: " + puntuacion, new Vector2(300, 220), Color.Yellow);
-            _spriteBatch.DrawString(fuente, "Vidas: " + vidas, new Vector2(300, 260), Color.Yellow);
-            _spriteBatch.DrawString(fuente, "Pulsa G para probar Game Over", new Vector2(300, 320), Color.Gray);
+            _spriteBatch.DrawString(
+                fuente,
+                "JUGANDO",
+                new Vector2(300, 120),
+                Color.White
+            );
+
+            _spriteBatch.DrawString(
+                fuente,
+                "Jugador: " + nombreJugador,
+                new Vector2(300, 180),
+                Color.Yellow
+            );
+
+            _spriteBatch.DrawString(
+                fuente,
+                "Puntuacion: " + puntuacion,
+                new Vector2(300, 220),
+                Color.Yellow
+            );
+
+            _spriteBatch.DrawString(
+                fuente,
+                "Vidas: " + vidas,
+                new Vector2(300, 260),
+                Color.Yellow
+            );
+
+            _spriteBatch.DrawString(
+                fuente,
+                "Pulsa G para probar Game Over",
+                new Vector2(300, 320),
+                Color.Gray
+            );
         }
     }
 }
